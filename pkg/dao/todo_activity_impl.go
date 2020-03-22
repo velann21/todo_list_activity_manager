@@ -15,11 +15,9 @@ import (
 type TodoDaoActivityImpl struct {
 	 MongoConnection *mongo.Client
 }
-/*
 
- */
+// TODO Make more comments  on all the DAO's
 func (todoActivity *TodoDaoActivityImpl) AddTodoActivity(ctx context.Context, req *requests.TodoRequest) (*string, error) {
-	//client := database.GetMongoConnection()
 	collection := database.MakeDatabaseAndTodoActivityCollection(todoActivity.MongoConnection)
 	res, err := collection.InsertOne(ctx, req)
 	if err != nil {
@@ -33,7 +31,6 @@ func (todoActivity *TodoDaoActivityImpl) AddTodoActivity(ctx context.Context, re
 	}
 }
 func (todoActivity *TodoDaoActivityImpl) GetTodoActivity(ctx context.Context, activityID string) (*requests.TodoRequest, error) {
-	//client := database.GetMongoConnection()
 	collection := database.MakeDatabaseAndTodoActivityCollection(todoActivity.MongoConnection)
 	objectid, err := primitive.ObjectIDFromHex(activityID)
 	if err != nil {
@@ -47,9 +44,7 @@ func (todoActivity *TodoDaoActivityImpl) GetTodoActivity(ctx context.Context, ac
 
 }
 func (todoActivity *TodoDaoActivityImpl) UpdateTodoActivity(ctx context.Context, activityID string, req *requests.UpdateTodoStruct) error {
-	//client := database.GetMongoConnection()
 	collection := database.MakeDatabaseAndTodoActivityCollection(todoActivity.MongoConnection)
-	//update := bson.D{{"$set", bson.D{{"", req},}},}
 	oID, err := primitive.ObjectIDFromHex(activityID)
 	if err != nil {
 		return err
@@ -64,7 +59,6 @@ func (todoActivity *TodoDaoActivityImpl) UpdateTodoActivity(ctx context.Context,
 }
 
 func (todoActivity *TodoDaoActivityImpl) DeleteTodoActivity(ctx context.Context, req *requests.DeleteTodoRequest) error {
-	//client := database.GetMongoConnection()
 	collection := database.MakeDatabaseAndTodoActivityCollection(todoActivity.MongoConnection)
 	oID, err := primitive.ObjectIDFromHex(req.ActivityID)
 	if err != nil {
@@ -78,7 +72,6 @@ func (todoActivity *TodoDaoActivityImpl) DeleteTodoActivity(ctx context.Context,
 }
 
 func (todoActivity *TodoDaoActivityImpl) InsertUserActivity(ctx context.Context, req *databaseModel.UserBasedTaskModel) (*string, error) {
-	//client := database.GetMongoConnection()
 	collection := database.MakeDatabaseAndUserTodoCollection(todoActivity.MongoConnection)
 	_, err := collection.InsertOne(ctx, req)
 	if err != nil {
@@ -88,7 +81,6 @@ func (todoActivity *TodoDaoActivityImpl) InsertUserActivity(ctx context.Context,
 }
 
 func (todoActivity *TodoDaoActivityImpl) UpdateUSerActivity(ctx context.Context, userID string, task []databaseModel.Task) error {
-	//client := database.GetMongoConnection()
 	collection := database.MakeDatabaseAndUserTodoCollection(todoActivity.MongoConnection)
 	update := bson.D{{"$set", bson.D{{"tasks", task}}}}
 	_, err := collection.UpdateOne(ctx, bson.D{{"_id", userID}}, update)
@@ -99,17 +91,10 @@ func (todoActivity *TodoDaoActivityImpl) UpdateUSerActivity(ctx context.Context,
 }
 
 func (todoActivity *TodoDaoActivityImpl) DeleteUserTodoActivity(ctx context.Context, req *requests.DeleteTodoRequest) error {
-	//client := database.GetMongoConnection()
-	//collection := database.MakeDatabaseAndUserTodoCollection(client)
-	//_, err := collection.DeleteOne(ctx, bson.M{"_id":req.})
-	//if err !=nil{
-	//	return err
-	//}
 	return nil
 }
 
 func (todoActivity *TodoDaoActivityImpl) GetUserTodoActivity(ctx context.Context, userID string) (*databaseModel.UserBasedTaskModel, error) {
-	//client := database.GetMongoConnection()
 	collection := database.MakeDatabaseAndUserTodoCollection(todoActivity.MongoConnection)
 	var model databaseModel.UserBasedTaskModel
 	if err := collection.FindOne(ctx, bson.D{{"_id", userID}}).Decode(&model); err != nil {
@@ -119,7 +104,6 @@ func (todoActivity *TodoDaoActivityImpl) GetUserTodoActivity(ctx context.Context
 }
 
 func (todoActivity *TodoDaoActivityImpl) AddSubTask(ctx context.Context, req []interface{}) (*[]string, error) {
-	//client := database.GetMongoConnection()
 	collection := database.MakeDatabaseAndUserTodoCollection(todoActivity.MongoConnection)
 	insertMany, err := collection.InsertMany(ctx, req)
 	if err != nil {
@@ -136,8 +120,8 @@ func (todoActivity *TodoDaoActivityImpl) AddSubTask(ctx context.Context, req []i
 }
 
 func (todoActivity *TodoDaoActivityImpl) UpdateUserTodoActivity(ctx context.Context, userID string, activityID string) error {
-	//client := database.GetMongoConnection()
 	collection := database.MakeDatabaseAndUserTodoCollection(todoActivity.MongoConnection)
+	// TODO make this as an TYPE/CONST
 	update := bson.M{"$pull": bson.M{"tasks": bson.M{"taskid": activityID}}}
 	updates, err := collection.UpdateOne(ctx, bson.D{{"_id", userID}}, update)
 	if err != nil {
@@ -148,16 +132,10 @@ func (todoActivity *TodoDaoActivityImpl) UpdateUserTodoActivity(ctx context.Cont
 }
 
 func (todoActivity *TodoDaoActivityImpl) DueDateRangeQuery(ctx context.Context, timeDiff int) error {
-
 	timeNow := time.Now()
 	formattedCurrentTime := timeNow.UTC().Format(time.RFC3339)
-
 	after := timeNow.Add(5 * time.Minute).UTC().Format(time.RFC3339)
-	fmt.Println(formattedCurrentTime)
-	fmt.Println(after)
-	//client := database.GetMongoConnection()
 	collection := database.MakeDatabaseAndTodoActivityCollection(todoActivity.MongoConnection)
-
 	filter := bson.M{"customduedate": bson.M{"$gt": formattedCurrentTime, "$lt": after}}
 	cursor, err := collection.Find(ctx, filter)
 	if err != nil {

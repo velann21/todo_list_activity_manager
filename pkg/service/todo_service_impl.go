@@ -14,9 +14,9 @@ type TodoServiceImpl struct {
 	DaoObj dao.TodoActivityDao
 }
 
+// TODO Make more comments  on all the DAO's
+// TodoCreateService is to create the todo activites
 func (todoServiceImpl *TodoServiceImpl) TodoCreateService(ctx context.Context, req *requests.TodoRequest) (*string, error) {
-
-	//daoObj := dm.NewDao(dm.ACTIVITYDAOMANAGER)
 
 	// Insert the tasks into task collection first
 	id, err := todoServiceImpl.DaoObj.AddTodoActivity(ctx, req)
@@ -26,7 +26,7 @@ func (todoServiceImpl *TodoServiceImpl) TodoCreateService(ctx context.Context, r
 	//check user activity is already present
 	usersActivity, err := todoServiceImpl.DaoObj.GetUserTodoActivity(ctx, req.UserID)
 	if err != nil {
-		// If user activity is for first time then insert the new entru for user
+		// If user activity is for first time then insert the new entry for user
 		if err.Error() == helpers.Nodocument {
 			logrus.Info("No documents found for this user, Inserting new for" + req.UserID)
 			tasksArray := make([]databaseModel.Task, 0)
@@ -58,8 +58,8 @@ func (todoServiceImpl *TodoServiceImpl) TodoCreateService(ctx context.Context, r
 	return &req.UserID, nil
 }
 
+// TodoGetService is to get the todo
 func (todoServiceImpl *TodoServiceImpl) TodoGetService(ctx context.Context, req requests.GetTodo) (*requests.TodoRequest, error) {
-	//daoObj := dm.NewDao(dm.ACTIVITYDAOMANAGER)
 	resp, err := todoServiceImpl.DaoObj.GetTodoActivity(ctx, req.ActivityID)
 	if err != nil {
 		if err.Error() == helpers.Nodocument {
@@ -71,8 +71,8 @@ func (todoServiceImpl *TodoServiceImpl) TodoGetService(ctx context.Context, req 
 	return resp, nil
 }
 
+// GetUserTodoActivityService is having BL to get user based todos
 func (todoServiceImpl *TodoServiceImpl) GetUserTodoActivityService(ctx context.Context, todo *requests.GetUserTodo) (*databaseModel.UserBasedTaskModel, error) {
-	//daoObj := dm.NewDao(dm.ACTIVITYDAOMANAGER)
 	usersActivity, err := todoServiceImpl.DaoObj.GetUserTodoActivity(ctx, todo.UserID)
 	if err != nil {
 		if err.Error() == helpers.Nodocument {
@@ -84,8 +84,8 @@ func (todoServiceImpl *TodoServiceImpl) GetUserTodoActivityService(ctx context.C
 	return usersActivity, nil
 }
 
+// TodoUpdateService is having BL to update
 func (todoServiceImpl *TodoServiceImpl) TodoUpdateService(ctx context.Context, req *requests.UpdateTodoStruct) (*string, error) {
-	//daoObj := dm.NewDao(dm.ACTIVITYDAOMANAGER)
 	// Update the tasks into task collection first
 	err := todoServiceImpl.DaoObj.UpdateTodoActivity(ctx, req.ActivityID, req)
 	if err != nil {
@@ -94,8 +94,8 @@ func (todoServiceImpl *TodoServiceImpl) TodoUpdateService(ctx context.Context, r
 	return &req.UserID, nil
 }
 
+// TodoDeleteService is having BL to delete todos and update the UpdateUserTodoActivity
 func (todoServiceImpl *TodoServiceImpl) TodoDeleteService(ctx context.Context, req *requests.DeleteTodoRequest) error {
-	//daoObj := dm.NewDao(dm.ACTIVITYDAOMANAGER)
 	err := todoServiceImpl.DaoObj.DeleteTodoActivity(ctx, req)
 	if err != nil {
 		return err
@@ -108,7 +108,6 @@ func (todoServiceImpl *TodoServiceImpl) TodoDeleteService(ctx context.Context, r
 }
 
 func (todoServiceImpl *TodoServiceImpl) TodoDueDateRangeQuery(ctx context.Context, req *requests.DueDateRangeStruct) error {
-	//daoObj := dm.NewDao(dm.ACTIVITYDAOMANAGER)
 	err := todoServiceImpl.DaoObj.DueDateRangeQuery(ctx, req.Range)
 	if err != nil {
 		return err
