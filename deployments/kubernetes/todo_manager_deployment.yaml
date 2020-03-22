@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-deployment
+  labels:
+    app: todosrv
+spec:
+  template:
+    metadata:
+      name: todopod
+      labels:
+        app: todosrv
+    spec:
+      containers:
+        - name: todosrv
+          image: singaravelan21/todo_list_user_srv:v1.0.4
+  replicas: 3
+  selector:
+    matchLabels:
+      app: todosrv
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todolistsrv
+spec:
+  type: ClusterIP
+  selector:
+    app: todosrv
+  ports:
+    - targetPort: 8086
+      port: 8086

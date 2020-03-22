@@ -1,0 +1,149 @@
+package controller
+
+import (
+	"context"
+	"github.com/todo_list_activity_manager/pkg/entities/requests"
+	"github.com/todo_list_activity_manager/pkg/entities/responses"
+	"github.com/todo_list_activity_manager/pkg/service"
+	"net/http"
+	"time"
+)
+
+
+type Controller struct {
+	Service service.TodoService
+}
+
+func (controller Controller) CreateTodoController (rw http.ResponseWriter, req *http.Request) {
+	request := requests.TodoRequest{}
+	successResponse := responses.Response{}
+	err := request.PopulateTodoRequest(req.Body)
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	ctx, cancel := context.WithTimeout(req.Context(), time.Second*30)
+	defer cancel()
+	err = request.ValidateTodoRequest()
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	id, err := controller.Service.TodoCreateService(ctx, &request)
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	successResponse.NewActivityRegisterResp(id)
+	successResponse.SendResponse(rw, http.StatusOK)
+	return
+}
+
+func (controller Controller) GetTodoController(rw http.ResponseWriter, req *http.Request) {
+	request := requests.GetTodo{}
+	successResponse := responses.Response{}
+
+	ctx, cancel := context.WithTimeout(req.Context(), time.Second*30)
+	defer cancel()
+	activityID := req.URL.Query().Get("activityID")
+	request.PopulateGetTodo(activityID)
+	err := request.ValidateGetTodo()
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	resp, err := controller.Service.TodoGetService(ctx, request)
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	successResponse.GetTodoResp(resp)
+	successResponse.SendResponse(rw, http.StatusOK)
+	return
+}
+
+func (controller Controller) UpdateTodoController(rw http.ResponseWriter, req *http.Request) {
+	request := requests.UpdateTodoStruct{}
+	successResponse := responses.Response{}
+
+	ctx, cancel := context.WithTimeout(req.Context(), time.Second*30)
+	defer cancel()
+	err := request.PopulateUpdateTodoStruct(req.Body)
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	err = request.ValidateUpdateTodoStruct()
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	id, err := controller.Service.TodoUpdateService(ctx, &request)
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	successResponse.UpdateActivityRegisterResp(id)
+	successResponse.SendResponse(rw, http.StatusOK)
+	return
+}
+
+func (controller Controller) DeleteTodoController(rw http.ResponseWriter, req *http.Request) {
+	request := requests.DeleteTodoRequest{}
+	successResponse := responses.Response{}
+	ctx, cancel := context.WithTimeout(req.Context(), time.Second*30)
+	defer cancel()
+	err := request.PopulateAndValidateDeleteTodoRequest(req.Body)
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	err = controller.Service.TodoDeleteService(ctx, &request)
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	successResponse.SendResponse(rw, http.StatusOK)
+	return
+}
+
+func (controller Controller) GetUserTodosController(rw http.ResponseWriter, req *http.Request) {
+	request := requests.GetUserTodo{}
+	successResponse := responses.Response{}
+	userID := req.URL.Query().Get("userID")
+	ctx, cancel := context.WithTimeout(req.Context(), time.Second*30)
+	defer cancel()
+	request.PopulateGetUserTodo(userID)
+	err := request.ValidateGetUserTodo()
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	userTaskModel, err := controller.Service.GetUserTodoActivityService(ctx, &request)
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	successResponse.GetuserActivityResp(userTaskModel)
+	successResponse.SendResponse(rw, http.StatusOK)
+	return
+}
+
+func (controller Controller) DueDateRangeQuerier(rw http.ResponseWriter, req *http.Request) {
+	request := requests.DueDateRangeStruct{}
+	successResponse := responses.Response{}
+	ctx, cancel := context.WithTimeout(req.Context(), time.Second*30)
+	defer cancel()
+	ranger := req.URL.Query().Get("range")
+	err := request.PopulateAndValidateDueDateRangeRequest(ranger)
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	err = controller.Service.TodoDueDateRangeQuery(ctx, &request)
+	if err != nil {
+		responses.HandleError(rw, err)
+		return
+	}
+	successResponse.SendResponse(rw, http.StatusOK)
+}

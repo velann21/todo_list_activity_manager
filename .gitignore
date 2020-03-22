@@ -1,0 +1,4 @@
+dist/
+.idea
+docker/activity_manager_bootstrap
+
