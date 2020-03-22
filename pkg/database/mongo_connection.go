@@ -30,11 +30,11 @@ func GetMongoConnection() *mongo.Client {
 }
 
 func MakeDatabaseAndTodoActivityCollection(client *mongo.Client) *mongo.Collection {
-	collection := client.Database("todo_list2").Collection("todo_activity")
+	collection := client.Database("todo_list").Collection("todo_activity")
 	return collection
 }
 
 func MakeDatabaseAndUserTodoCollection(client *mongo.Client) *mongo.Collection {
-	collection := client.Database("todo_list2").Collection("todo_user_activity")
+	collection := client.Database("todo_list").Collection("todo_user_activity")
 	return collection
 }

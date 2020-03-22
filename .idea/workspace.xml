@@ -4,8 +4,8 @@
     <list default="true" id="cbf0d22d-d043-45a3-ba77-47ea56818887" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deployments/.version" beforeDir="false" afterPath="$PROJECT_DIR$/deployments/.version" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/dao/todo_activity_impl.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/dao/todo_activity_impl.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/entities/database_model/todo_activity_model.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/entities/database_model/todo_activity_model.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployments/makefile/dist/linux/bin/activity_manager_bootstrap" beforeDir="false" afterPath="$PROJECT_DIR$/deployments/makefile/dist/linux/bin/activity_manager_bootstrap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/database/mongo_connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/database/mongo_connection.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,10 +15,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pkg/dao/todo_activity_impl.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="-229">
               <caret line="140" column="60" selection-start-line="140" selection-start-column="60" selection-end-line="140" selection-end-column="60" />
             </state>
           </provider>
@@ -69,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pkg/database/mongo_connection.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="265">
+              <caret line="37" column="44" lean-forward="true" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -82,7 +82,7 @@
         <entry file="file://$PROJECT_DIR$/pkg/service/todo_service_impl.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="139">
-              <caret line="51" column="38" lean-forward="true" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+              <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -91,7 +91,7 @@
         <entry file="file://$PROJECT_DIR$/deployments/.version">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="6" selection-end-column="6" />
+              <caret column="6" selection-start-column="6" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -144,15 +144,15 @@
         <option value="$PROJECT_DIR$/pkg/helpers/commons.go" />
         <option value="$PROJECT_DIR$/pkg/helpers/cronjob.go" />
         <option value="$PROJECT_DIR$/pkg/dao/Itodo_activity_dao.go" />
-        <option value="$PROJECT_DIR$/pkg/database/mongo_connection.go" />
         <option value="$PROJECT_DIR$/pkg/service/todo_service_impl.go" />
         <option value="$PROJECT_DIR$/pkg/routes/todo_activity_routes.go" />
         <option value="$PROJECT_DIR$/pkg/controller/todo_activity.go" />
         <option value="$PROJECT_DIR$/cmd/activity_manager_bootstrap.go" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/deployments/.version" />
         <option value="$PROJECT_DIR$/pkg/entities/database_model/todo_activity_model.go" />
         <option value="$PROJECT_DIR$/pkg/dao/todo_activity_impl.go" />
+        <option value="$PROJECT_DIR$/deployments/.version" />
+        <option value="$PROJECT_DIR$/pkg/database/mongo_connection.go" />
       </list>
     </option>
   </component>
@@ -644,13 +644,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deployments/.version">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pkg/dao/Itodo_activity_dao.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -658,17 +651,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/database/mongo_connection.go">
+    <entry file="file://$PROJECT_DIR$/pkg/dao/todo_activity_impl.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="-229">
+          <caret line="140" column="60" selection-start-line="140" selection-start-column="60" selection-end-line="140" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pkg/service/todo_service_impl.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="139">
-          <caret line="51" column="38" lean-forward="true" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+          <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deployments/.version">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -679,10 +679,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/dao/todo_activity_impl.go">
+    <entry file="file://$PROJECT_DIR$/pkg/database/mongo_connection.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="140" column="60" selection-start-line="140" selection-start-column="60" selection-end-line="140" selection-end-column="60" />
+        <state relative-caret-position="265">
+          <caret line="37" column="44" lean-forward="true" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
         </state>
       </provider>
     </entry>
