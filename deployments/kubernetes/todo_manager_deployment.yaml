@@ -13,7 +13,10 @@ spec:
     spec:
       containers:
         - name: todosrv
-          image: singaravelan21/todo_list_user_srv:v1.0.4
+          image: singaravelan21/todo_list_manager:v1.0.7
+          env:
+            - name: MONGO_CONN
+              value: activitymanager-database:27017
   replicas: 3
   selector:
     matchLabels:
