@@ -138,7 +138,7 @@ func (todoActivity *TodoDaoActivityImpl) AddSubTask(ctx context.Context, req []i
 func (todoActivity *TodoDaoActivityImpl) UpdateUserTodoActivity(ctx context.Context, userID string, activityID string) error {
 	//client := database.GetMongoConnection()
 	collection := database.MakeDatabaseAndUserTodoCollection(todoActivity.MongoConnection)
-	update := bson.M{"$pull": bson.M{"tasks": bson.M{"taskID": activityID}}}
+	update := bson.M{"$pull": bson.M{"tasks": bson.M{"taskid": activityID}}}
 	updates, err := collection.UpdateOne(ctx, bson.D{{"_id", userID}}, update)
 	if err != nil {
 		return err

@@ -7,7 +7,7 @@ type UserBasedTaskModel struct {
 
 
 type Task struct {
-	TaskID          string `json:"taskID"`
+	TaskID          string `json:"taskid"`
 	TaskName        string `json:"taskName"`
 	TaskDescription string `json:"taskDescription"`
 	TaskTag         string `json:"taskTag"`
