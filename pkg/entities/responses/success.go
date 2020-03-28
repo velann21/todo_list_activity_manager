@@ -2,8 +2,8 @@ package responses
 
 import (
 	"encoding/json"
-	"github.com/todo_list_activity_manager/pkg/entities/database_model"
-	"github.com/todo_list_activity_manager/pkg/entities/requests"
+	"github.com/velann21/todo_list_activity_manager/pkg/entities/database_model"
+	"github.com/velann21/todo_list_activity_manager/pkg/entities/requests"
 	"net/http"
 )
 

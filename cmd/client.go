@@ -6,7 +6,7 @@ import (
 	"google.golang.org/grpc"
 	"log"
 )
-import  proto "github.com/todo_list_activity_manager/pkg/proto"
+import  proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 
 func main(){
 	conn, err := grpc.Dial("localhost:50051",grpc.WithInsecure())

@@ -1,4 +1,4 @@
-module github.com/todo_list_activity_manager
+module github.com/velann21/todo_list_activity_manager
 
 go 1.12
 

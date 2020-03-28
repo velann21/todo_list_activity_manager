@@ -3,8 +3,8 @@ package routes
 import (
 	"context"
 	"fmt"
-	"github.com/todo_list_activity_manager/pkg/controller"
-	proto "github.com/todo_list_activity_manager/pkg/proto"
+	"github.com/velann21/todo_list_activity_manager/pkg/controller"
+	proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 )
 
 type ServerRoutes struct {

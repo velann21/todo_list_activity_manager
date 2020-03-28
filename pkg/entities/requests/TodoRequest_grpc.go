@@ -1,8 +1,8 @@
 package requests
 
 import (
-	"github.com/todo_list_activity_manager/pkg/helpers"
-	proto "github.com/todo_list_activity_manager/pkg/proto"
+	"github.com/velann21/todo_list_activity_manager/pkg/helpers"
+	proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 	"time"
 )
 

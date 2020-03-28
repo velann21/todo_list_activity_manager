@@ -2,7 +2,7 @@ package responses
 
 import (
 	"encoding/json"
-	"github.com/todo_list_activity_manager/pkg/helpers"
+	"github.com/velann21/todo_list_activity_manager/pkg/helpers"
 	"net/http"
 )
 

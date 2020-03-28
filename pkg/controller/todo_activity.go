@@ -3,9 +3,9 @@ package controller
 import (
 	"context"
 	"github.com/sirupsen/logrus"
-	"github.com/todo_list_activity_manager/pkg/entities/requests"
-	"github.com/todo_list_activity_manager/pkg/entities/responses"
-	"github.com/todo_list_activity_manager/pkg/service"
+	"github.com/velann21/todo_list_activity_manager/pkg/entities/requests"
+	"github.com/velann21/todo_list_activity_manager/pkg/entities/responses"
+	"github.com/velann21/todo_list_activity_manager/pkg/service"
 	"net/http"
 	"time"
 )

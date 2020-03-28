@@ -2,7 +2,7 @@ package database
 
 import (
 	"context"
-	"github.com/todo_list_activity_manager/pkg/helpers"
+	"github.com/velann21/todo_list_activity_manager/pkg/helpers"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"time"

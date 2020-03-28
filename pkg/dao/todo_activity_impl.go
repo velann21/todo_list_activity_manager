@@ -3,9 +3,9 @@ package dao
 import (
 	"context"
 	"fmt"
-	"github.com/todo_list_activity_manager/pkg/database"
-	databaseModel "github.com/todo_list_activity_manager/pkg/entities/database_model"
-	"github.com/todo_list_activity_manager/pkg/entities/requests"
+	"github.com/velann21/todo_list_activity_manager/pkg/database"
+	databaseModel "github.com/velann21/todo_list_activity_manager/pkg/entities/database_model"
+	"github.com/velann21/todo_list_activity_manager/pkg/entities/requests"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"

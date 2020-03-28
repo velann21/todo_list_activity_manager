@@ -2,8 +2,8 @@ package service
 
 import (
 	"context"
-	databaseModel "github.com/todo_list_activity_manager/pkg/entities/database_model"
-	"github.com/todo_list_activity_manager/pkg/entities/requests"
+	databaseModel "github.com/velann21/todo_list_activity_manager/pkg/entities/database_model"
+	"github.com/velann21/todo_list_activity_manager/pkg/entities/requests"
 )
 
 type TodoService interface {

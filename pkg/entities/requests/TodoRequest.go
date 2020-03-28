@@ -2,7 +2,7 @@ package requests
 
 import (
 	"encoding/json"
-	"github.com/todo_list_activity_manager/pkg/helpers"
+	"github.com/velann21/todo_list_activity_manager/pkg/helpers"
 	"io"
 	"strconv"
 	"time"

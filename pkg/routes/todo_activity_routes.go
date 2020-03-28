@@ -2,10 +2,10 @@ package routes
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/todo_list_activity_manager/pkg/controller"
-	"github.com/todo_list_activity_manager/pkg/dao"
-	"github.com/todo_list_activity_manager/pkg/database"
-	"github.com/todo_list_activity_manager/pkg/service"
+	"github.com/velann21/todo_list_activity_manager/pkg/controller"
+	"github.com/velann21/todo_list_activity_manager/pkg/dao"
+	"github.com/velann21/todo_list_activity_manager/pkg/database"
+	"github.com/velann21/todo_list_activity_manager/pkg/service"
 )
 
 

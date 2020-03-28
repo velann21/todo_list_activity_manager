@@ -3,11 +3,11 @@ package service
 import (
 	"context"
 	"github.com/sirupsen/logrus"
-	"github.com/todo_list_activity_manager/pkg/dao"
-	databaseModel "github.com/todo_list_activity_manager/pkg/entities/database_model"
-	"github.com/todo_list_activity_manager/pkg/entities/requests"
-	"github.com/todo_list_activity_manager/pkg/helpers"
-	//databaseModel "github.com/todo_list_activity_manager/pkg/entities/database_model"
+	"github.com/velann21/todo_list_activity_manager/pkg/dao"
+	databaseModel "github.com/velann21/todo_list_activity_manager/pkg/entities/database_model"
+	"github.com/velann21/todo_list_activity_manager/pkg/entities/requests"
+	"github.com/velann21/todo_list_activity_manager/pkg/helpers"
+	//databaseModel "github.com/velann21/todo_list_activity_manager/pkg/entities/database_model"
 )
 
 type TodoServiceImpl struct {
