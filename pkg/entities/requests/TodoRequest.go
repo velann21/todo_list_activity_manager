@@ -44,10 +44,13 @@ type SubTask struct {
 }
 
 func (todoRequest *TodoRequest) PopulateTodoRequest(body io.ReadCloser) error {
+	if body == nil{
+		return helpers.InvalidRequest
+	}
 	decoder := json.NewDecoder(body)
 	err := decoder.Decode(todoRequest)
 	if err != nil {
-		return helpers.NotValidRequestBody
+		return helpers.InvalidRequest
 	}
 	return nil
 }

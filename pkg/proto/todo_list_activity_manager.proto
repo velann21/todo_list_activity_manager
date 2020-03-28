@@ -1,0 +1,68 @@
+syntax = "proto3";
+package todolist;
+option go_package = "todolist";
+message CreateTodoListRequest{
+    string userID = 1;
+    string name = 2;
+    string description = 3;
+    string  dueDate = 4;
+    string customDueDate = 5;
+    bool repeatMode = 6;
+    Tags tag = 7;
+    notification notification = 8;
+    repeated subTask subTask = 9;
+
+
+}
+
+message CreateTodoListResponse{
+    repeated CreateTodoListUserInformationResponse data = 1;
+    repeated ErrorResponse errors = 2;
+
+    message CreateTodoListUserInformationResponse{
+        string ID = 1;
+    }
+
+    message ErrorResponse{
+        string errorMessage = 1;
+        string statusCode = 2;
+    }
+}
+
+enum Tags {
+    PRIORITY = 0;
+    NORMAL = 1;
+    MONEY = 2;
+    SPORTS = 3;
+    COKKING = 4;
+    SOCAILIZING = 5;
+    GENERAL = 6;
+}
+
+message subTask {
+      string name = 1;
+      string description = 2;
+      bool status = 3;
+      int32 offset = 4;
+}
+
+message notification {
+    email email =1;
+    textmessage message = 2;
+}
+
+message email{
+    bool notification = 1;
+    string emailID = 2;
+}
+
+message textmessage{
+   bool notification = 1;
+   string countryCode = 2;
+   string mobileNumber = 3;
+}
+
+
+service TodoActivityManager{
+    rpc CreateTodo(CreateTodoListRequest) returns (CreateTodoListResponse) {};
+}
