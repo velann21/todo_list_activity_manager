@@ -4,13 +4,14 @@ import (
 	"context"
 	databaseModel "github.com/velann21/todo_list_activity_manager/pkg/entities/database_model"
 	"github.com/velann21/todo_list_activity_manager/pkg/entities/requests"
+	proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 )
 
 type TodoActivityDao interface {
-	AddTodoActivity(ctx context.Context, req *requests.TodoRequest) (*string, error)
+	AddTodoActivity(ctx context.Context, req *proto.CreateTodoListRequest) (*string, error)
 	AddSubTask(ctx context.Context, req []interface{}) (*[]string, error)
-	GetTodoActivity(ctx context.Context, activityID string) (*requests.TodoRequest, error)
-	UpdateTodoActivity(ctx context.Context, activityID string, req *requests.UpdateTodoStruct) error
+	GetTodoActivity(ctx context.Context, activityID string) (*proto.CreateTodoListRequest, error)
+	UpdateTodoActivity(ctx context.Context, activityID string, req *proto.UpdateTodoListRequest) error
 	DeleteTodoActivity(ctx context.Context, req *requests.DeleteTodoRequest) error
 	InsertUserActivity(ctx context.Context, req *databaseModel.UserBasedTaskModel) (*string, error)
 	UpdateUSerActivity(ctx context.Context, userID string, task []databaseModel.Task) error

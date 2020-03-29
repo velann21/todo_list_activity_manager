@@ -6,6 +6,7 @@ import (
 	"github.com/velann21/todo_list_activity_manager/pkg/database"
 	databaseModel "github.com/velann21/todo_list_activity_manager/pkg/entities/database_model"
 	"github.com/velann21/todo_list_activity_manager/pkg/entities/requests"
+	proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -17,7 +18,7 @@ type TodoDaoActivityImpl struct {
 }
 
 // TODO Make more comments  on all the DAO's
-func (todoActivity *TodoDaoActivityImpl) AddTodoActivity(ctx context.Context, req *requests.TodoRequest) (*string, error) {
+func (todoActivity *TodoDaoActivityImpl) AddTodoActivity(ctx context.Context, req *proto.CreateTodoListRequest) (*string, error) {
 	collection := database.MakeDatabaseAndTodoActivityCollection(todoActivity.MongoConnection)
 	res, err := collection.InsertOne(ctx, req)
 	if err != nil {
@@ -30,20 +31,20 @@ func (todoActivity *TodoDaoActivityImpl) AddTodoActivity(ctx context.Context, re
 		return nil, nil
 	}
 }
-func (todoActivity *TodoDaoActivityImpl) GetTodoActivity(ctx context.Context, activityID string) (*requests.TodoRequest, error) {
+func (todoActivity *TodoDaoActivityImpl) GetTodoActivity(ctx context.Context, activityID string) (*proto.CreateTodoListRequest, error) {
 	collection := database.MakeDatabaseAndTodoActivityCollection(todoActivity.MongoConnection)
 	objectid, err := primitive.ObjectIDFromHex(activityID)
 	if err != nil {
 		return nil, err
 	}
-	var todoModel requests.TodoRequest
+	var todoModel proto.CreateTodoListRequest
 	if err := collection.FindOne(ctx, bson.D{{"_id", objectid}}).Decode(&todoModel); err != nil {
 		return nil, err
 	}
 	return &todoModel, nil
 
 }
-func (todoActivity *TodoDaoActivityImpl) UpdateTodoActivity(ctx context.Context, activityID string, req *requests.UpdateTodoStruct) error {
+func (todoActivity *TodoDaoActivityImpl) UpdateTodoActivity(ctx context.Context, activityID string, req *proto.UpdateTodoListRequest) error {
 	collection := database.MakeDatabaseAndTodoActivityCollection(todoActivity.MongoConnection)
 	oID, err := primitive.ObjectIDFromHex(activityID)
 	if err != nil {

@@ -5,6 +5,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/velann21/todo_list_activity_manager/pkg/entities/requests"
 	"github.com/velann21/todo_list_activity_manager/pkg/entities/responses"
+	proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 	"github.com/velann21/todo_list_activity_manager/pkg/service"
 	"net/http"
 	"time"
@@ -20,11 +21,11 @@ func (controller Controller) CreateTodoController (rw http.ResponseWriter, req *
 	eventType, traceID := getEventTypeAndTraceID(req)
 	logrus.WithField("EventType", eventType).WithField("TraceID", traceID).
 		WithField("Action","Request").Info("CreateTodoController Startes")
-	request := requests.TodoRequest{}
+	request := proto.CreateTodoListRequest{}
 	successResponse := responses.Response{}
 
 	// To decode the data
-	err := request.PopulateTodoRequest(req.Body)
+	resp, err := requests.PopulateCreateTodo(&request, req.Body)
 	if err != nil {
 		logrus.WithField("EventType", eventType).WithField("TraceID", traceID).WithError(err).Error("PopulateTodoRequest Failed")
 		responses.HandleError(rw, err)
@@ -34,7 +35,7 @@ func (controller Controller) CreateTodoController (rw http.ResponseWriter, req *
 	defer cancel()
 
 	// To validate the request struct
-	err = request.ValidateTodoRequest()
+	err = requests.ValidateCreateTodo(resp)
 	if err != nil {
 		logrus.WithField("EventType", eventType).WithField("TraceID", traceID).WithError(err).Error("ValidateTodoRequest Failed")
 		responses.HandleError(rw, err)
@@ -96,18 +97,18 @@ func (controller Controller) UpdateTodoController(rw http.ResponseWriter, req *h
 	eventType, traceID := getEventTypeAndTraceID(req)
 	logrus.WithField("EventType", eventType).WithField("TraceID", traceID).
 		WithField("Action","Request").Info("UpdateTodoController Startes")
-	request := requests.UpdateTodoStruct{}
+	request := proto.UpdateTodoListRequest{}
 	successResponse := responses.Response{}
 
 	ctx, cancel := context.WithTimeout(req.Context(), time.Second*30)
 	defer cancel()
-	err := request.PopulateUpdateTodoStruct(req.Body)
+	err := requests.PopulateUpdateTodoStruct(&request,req.Body)
 	if err != nil {
 		logrus.WithField("EventType", eventType).WithField("TraceID", traceID).WithError(err).Error("PopulateUpdateTodoStruct Failed")
 		responses.HandleError(rw, err)
 		return
 	}
-	err = request.ValidateUpdateTodoStruct()
+	err = requests.ValidateUpdateTodoStruct(&request)
 	if err != nil {
 		logrus.WithField("EventType", eventType).WithField("TraceID", traceID).WithError(err).Error("ValidateUpdateTodoStruct Failed")
 		responses.HandleError(rw, err)

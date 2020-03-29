@@ -7,6 +7,7 @@ import (
 	databaseModel "github.com/velann21/todo_list_activity_manager/pkg/entities/database_model"
 	"github.com/velann21/todo_list_activity_manager/pkg/entities/requests"
 	"github.com/velann21/todo_list_activity_manager/pkg/helpers"
+	proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 	//databaseModel "github.com/velann21/todo_list_activity_manager/pkg/entities/database_model"
 )
 
@@ -16,8 +17,7 @@ type TodoServiceImpl struct {
 
 // TODO Make more comments  on all the DAO's
 // TodoCreateService is to create the todo activites
-func (todoServiceImpl *TodoServiceImpl) TodoCreateService(ctx context.Context, req *requests.TodoRequest) (*string, error) {
-
+func (todoServiceImpl *TodoServiceImpl) TodoCreateService(ctx context.Context, req *proto.CreateTodoListRequest) (*string, error) {
 	// Insert the tasks into task collection first
 	id, err := todoServiceImpl.DaoObj.AddTodoActivity(ctx, req)
 	if err != nil {
@@ -34,7 +34,7 @@ func (todoServiceImpl *TodoServiceImpl) TodoCreateService(ctx context.Context, r
 				TaskID:          *id,
 				TaskName:        req.Name,
 				TaskDescription: req.Description,
-				TaskTag:         req.Tag,
+				TaskTag:         req.Tag.String(),
 			}
 			tasksArray = append(tasksArray, task)
 			userActivity := databaseModel.UserBasedTaskModel{ID: req.UserID, Tasks: tasksArray}
@@ -49,7 +49,7 @@ func (todoServiceImpl *TodoServiceImpl) TodoCreateService(ctx context.Context, r
 	// If user entry is present already the just append the task with users task array, This is just for scalable solution but
 	// we are duplicating the data
 	existingTasks := usersActivity.Tasks
-	newTask := databaseModel.Task{TaskID: *id, TaskName: req.Name, TaskDescription: req.Description, TaskTag: req.Tag}
+	newTask := databaseModel.Task{TaskID: *id, TaskName: req.Name, TaskDescription: req.Description, TaskTag: req.Tag.String()}
 	existingTasks = append(existingTasks, newTask)
 	err = todoServiceImpl.DaoObj.UpdateUSerActivity(ctx, req.UserID, existingTasks)
 	if err != nil {
@@ -59,7 +59,7 @@ func (todoServiceImpl *TodoServiceImpl) TodoCreateService(ctx context.Context, r
 }
 
 // TodoGetService is to get the todo
-func (todoServiceImpl *TodoServiceImpl) TodoGetService(ctx context.Context, req requests.GetTodo) (*requests.TodoRequest, error) {
+func (todoServiceImpl *TodoServiceImpl) TodoGetService(ctx context.Context, req requests.GetTodo) (*proto.CreateTodoListRequest, error) {
 	resp, err := todoServiceImpl.DaoObj.GetTodoActivity(ctx, req.ActivityID)
 	if err != nil {
 		if err.Error() == helpers.Nodocument {
@@ -85,7 +85,7 @@ func (todoServiceImpl *TodoServiceImpl) GetUserTodoActivityService(ctx context.C
 }
 
 // TodoUpdateService is having BL to update
-func (todoServiceImpl *TodoServiceImpl) TodoUpdateService(ctx context.Context, req *requests.UpdateTodoStruct) (*string, error) {
+func (todoServiceImpl *TodoServiceImpl) TodoUpdateService(ctx context.Context, req *proto.UpdateTodoListRequest) (*string, error) {
 	// Update the tasks into task collection first
 	err := todoServiceImpl.DaoObj.UpdateTodoActivity(ctx, req.ActivityID, req)
 	if err != nil {

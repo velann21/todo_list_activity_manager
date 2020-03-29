@@ -3,7 +3,8 @@ package responses
 import (
 	"encoding/json"
 	"github.com/velann21/todo_list_activity_manager/pkg/entities/database_model"
-	"github.com/velann21/todo_list_activity_manager/pkg/entities/requests"
+	proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
+
 	"net/http"
 )
 
@@ -33,7 +34,7 @@ func (entity *Response) GetuserActivityResp(tasks *database_model.UserBasedTaskM
 	metaData["message"] = "Success"
 }
 
-func (entity *Response) GetTodoResp(todo *requests.TodoRequest) {
+func (entity *Response) GetTodoResp(todo *proto.CreateTodoListRequest) {
 	responseData := make([]map[string]interface{}, 0)
 	data := make(map[string]interface{})
 	data["taskDetails"] = todo

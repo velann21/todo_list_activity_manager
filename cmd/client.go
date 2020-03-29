@@ -42,12 +42,12 @@ func doUnary(client proto.TodoActivityManagerClient){
 			{
 				Name:"Task1.1",
 				Description:"Task is to put chutey",
-				Status:true,
+				Status:false,
 				Offset:0,
 			},{
 				Name:"Task1.2",
 				Description:"Task is to put vepalai",
-				Status:true,
+				Status:false,
 				Offset:1,
 			},
 		},

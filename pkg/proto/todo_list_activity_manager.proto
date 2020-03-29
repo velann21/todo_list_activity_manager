@@ -11,8 +11,6 @@ message CreateTodoListRequest{
     Tags tag = 7;
     notification notification = 8;
     repeated subTask subTask = 9;
-
-
 }
 
 message CreateTodoListResponse{
@@ -62,6 +60,33 @@ message textmessage{
    string mobileNumber = 3;
 }
 
+
+message UpdateTodoListRequest{
+    string userID = 1;
+    string name = 2;
+    string description = 3;
+    string  dueDate = 4;
+    string customDueDate = 5;
+    bool repeatMode = 6;
+    Tags tag = 7;
+    notification notification = 8;
+    repeated subTask subTask = 9;
+    string activityID = 10;
+}
+
+message UpdateTodoListResponse{
+    repeated UpdateTodoListUserInformationResponse data = 1;
+    repeated ErrorResponse errors = 2;
+
+    message UpdateTodoListUserInformationResponse{
+        string ID = 1;
+    }
+
+    message ErrorResponse{
+        string errorMessage = 1;
+        string statusCode = 2;
+    }
+}
 
 service TodoActivityManager{
     rpc CreateTodo(CreateTodoListRequest) returns (CreateTodoListResponse) {};

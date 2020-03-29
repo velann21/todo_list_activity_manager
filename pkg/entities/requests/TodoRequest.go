@@ -3,6 +3,7 @@ package requests
 import (
 	"encoding/json"
 	"github.com/velann21/todo_list_activity_manager/pkg/helpers"
+	amProto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 	"io"
 	"strconv"
 	"time"
@@ -136,19 +137,19 @@ func (getTodo *GetTodo) ValidateGetTodo() error {
 	return nil
 }
 
-type UpdateTodoStruct struct {
-	ActivityID   string       `json:"activityID"`
-	UserID       string       `json:"userID"`
-	Name         string       `json:"name"`
-	Description  string       `json:"description"`
-	Notification Notification `json:"notification"`
-	DueDate      time.Time    `json:"dueDate"`
-	Repeatmode   bool         `json:"repeatMode"`
-	Tag          string       `json:"tag"`
-	SubTasks     []SubTask    `json:"subtask"`
-}
+//type UpdateTodoStruct struct {
+//	ActivityID   string       `json:"activityID"`
+//	UserID       string       `json:"userID"`
+//	Name         string       `json:"name"`
+//	Description  string       `json:"description"`
+//	Notification Notification `json:"notification"`
+//	DueDate      time.Time    `json:"dueDate"`
+//	Repeatmode   bool         `json:"repeatMode"`
+//	Tag          string       `json:"tag"`
+//	SubTasks     []SubTask    `json:"subtask"`
+//}
 
-func (updateTodoRequest *UpdateTodoStruct) PopulateUpdateTodoStruct(body io.ReadCloser) error {
+func PopulateUpdateTodoStruct(updateTodoRequest *amProto.UpdateTodoListRequest, body io.ReadCloser) error {
 	decoder := json.NewDecoder(body)
 	err := decoder.Decode(updateTodoRequest)
 	if err != nil {
@@ -157,7 +158,7 @@ func (updateTodoRequest *UpdateTodoStruct) PopulateUpdateTodoStruct(body io.Read
 	return nil
 }
 
-func (updateTodoRequest *UpdateTodoStruct) ValidateUpdateTodoStruct() error {
+func  ValidateUpdateTodoStruct(updateTodoRequest *amProto.UpdateTodoListRequest) error {
 
 	if updateTodoRequest.ActivityID == "" || updateTodoRequest.ActivityID == " " {
 		return helpers.InvalidRequest
@@ -179,9 +180,13 @@ func (updateTodoRequest *UpdateTodoStruct) ValidateUpdateTodoStruct() error {
 	}
 
 	currentTime := time.Now()
-	requestTime := updateTodoRequest.DueDate
+	requestTime := updateTodoRequest.GetDueDate()
+	formatedTime, err := time.Parse(time.RFC3339, requestTime)
+	if err != nil {
+		return helpers.InvalidRequest
+	}
 	serverTime := time.Date(currentTime.Year(), currentTime.Month(), currentTime.Day(), currentTime.Hour(), currentTime.Minute(), currentTime.Second(), currentTime.Nanosecond(), currentTime.Location())
-	clientTime := time.Date(requestTime.Year(), requestTime.Month(), requestTime.Day(), requestTime.Hour(), requestTime.Minute(), requestTime.Second(), requestTime.Nanosecond(), requestTime.Location())
+	clientTime := time.Date(formatedTime.Year(), formatedTime.Month(), formatedTime.Day(), formatedTime.Hour(), formatedTime.Minute(), formatedTime.Second(), formatedTime.Nanosecond(), formatedTime.Location())
 
 	if clientTime.Before(serverTime) {
 		return helpers.InvalidRequest
@@ -200,9 +205,9 @@ func (updateTodoRequest *UpdateTodoStruct) ValidateUpdateTodoStruct() error {
 			return helpers.InvalidRequest
 		}
 	}
-	tasks := updateTodoRequest.SubTasks
+	tasks := updateTodoRequest.GetSubTask()
 	for i, v := range tasks {
-		if v.Offset <= 0 && v.Offset != i {
+		if v.Offset <= 0 && v.Offset != int32(i) {
 			return helpers.InvalidRequest
 		}
 	}
@@ -245,6 +250,70 @@ func (dueDateRangeStruct *DueDateRangeStruct) PopulateAndValidateDueDateRangeReq
 
 	if dueDateRangeStruct.Range < 0 {
 		return helpers.InvalidRequest
+	}
+	return nil
+}
+
+
+func PopulateCreateTodo(todoRequest *amProto.CreateTodoListRequest, reader io.Reader) (*amProto.CreateTodoListRequest, error){
+	err := json.NewDecoder(reader).Decode(&todoRequest)
+	if err != nil{
+		return nil, err
+	}
+	return todoRequest, nil
+}
+
+func ValidateCreateTodo(todoRequest *amProto.CreateTodoListRequest) error {
+
+	if todoRequest.GetUserID() == "" || todoRequest.GetUserID() == " " {
+		return helpers.InvalidRequest
+	}
+
+	if todoRequest.GetName() == "" || todoRequest.GetName() == " " {
+		return helpers.InvalidRequest
+	}
+
+	if todoRequest.GetDescription() == "" || todoRequest.GetDescription() == " " {
+		return helpers.InvalidRequest
+	}
+	if todoRequest.GetNotification().Email.Notification == false && todoRequest.GetNotification().Message.Notification == false {
+		return helpers.InvalidRequest
+	}
+
+	currentTime := time.Now()
+	requestTime := todoRequest.GetDueDate()
+	formatedTime, err := time.Parse(time.RFC3339, requestTime)
+	if err != nil {
+		return helpers.InvalidRequest
+	}
+	serverTime := time.Date(currentTime.Year(), currentTime.Month(), currentTime.Day(), currentTime.Hour(), currentTime.Minute(), currentTime.Second(), currentTime.Nanosecond(), currentTime.Location())
+	clientTime := time.Date(formatedTime.Year(), formatedTime.Month(), formatedTime.Day(), formatedTime.Hour(), formatedTime.Minute(), formatedTime.Second(), formatedTime.Nanosecond(), formatedTime.Location())
+
+	if clientTime.Before(serverTime) {
+		return helpers.InvalidRequest
+	}
+
+
+	todoRequest.CustomDueDate = formatedTime.String()
+
+	if todoRequest.GetNotification().GetEmail().GetNotification() == true {
+		if todoRequest.GetNotification().GetEmail().GetEmailID() == "" {
+			return helpers.InvalidRequest
+		}
+	}
+	if todoRequest.GetNotification().GetMessage().GetNotification() == true {
+		if todoRequest.GetNotification().GetMessage().GetMobileNumber() == "" {
+			return helpers.InvalidRequest
+		}
+		if todoRequest.Notification.Message.MobileNumber == "" {
+			return helpers.InvalidRequest
+		}
+	}
+	tasks := todoRequest.GetSubTask()
+	for i, v := range tasks {
+		if v.GetOffset() <= 0 && v.GetOffset() != int32(i) {
+			return helpers.InvalidRequest
+		}
 	}
 	return nil
 }

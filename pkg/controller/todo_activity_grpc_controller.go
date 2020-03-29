@@ -7,15 +7,20 @@ import (
 	proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 )
 
-func CreateTodo(ctx context.Context, req *proto.CreateTodoListRequest) (*proto.CreateTodoListResponse, error){
+
+func (controller Controller)CreateTodo(ctx context.Context, req *proto.CreateTodoListRequest) (*proto.CreateTodoListResponse, error){
 	fmt.Println("CreateTodo")
 	err := requests.ValidateCreateTodo(req)
 	if err != nil{
 		return nil, err
 	}
+	id, err := controller.Service.TodoCreateService(ctx, req)
+	if err != nil {
+		return nil, err
+	}
 	createTodoResp := proto.CreateTodoListResponse{
 		Data:[]*proto.CreateTodoListResponse_CreateTodoListUserInformationResponse{
-			{ID: req.Name},
+			{ID: *id},
 		},
 	}
 	return &createTodoResp, nil
