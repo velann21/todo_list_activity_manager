@@ -2,6 +2,7 @@ package requests
 
 import (
 	"encoding/json"
+	"github.com/sirupsen/logrus"
 	"github.com/velann21/todo_list_activity_manager/pkg/helpers"
 	amProto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 	"io"
@@ -223,6 +224,7 @@ func (deleteTodoRequest *DeleteTodoRequest) PopulateAndValidateDeleteTodoRequest
 	decoder := json.NewDecoder(body)
 	err := decoder.Decode(deleteTodoRequest)
 	if err != nil {
+		logrus.Error("PopulateAndValidateDeleteTodoRequest()")
 		return helpers.NotValidRequestBody
 	}
 
@@ -266,17 +268,21 @@ func PopulateCreateTodo(todoRequest *amProto.CreateTodoListRequest, reader io.Re
 func ValidateCreateTodo(todoRequest *amProto.CreateTodoListRequest) error {
 
 	if todoRequest.GetUserID() == "" || todoRequest.GetUserID() == " " {
+		logrus.Error("GetUserID() null")
 		return helpers.InvalidRequest
 	}
 
 	if todoRequest.GetName() == "" || todoRequest.GetName() == " " {
+		logrus.Error("GetName() null")
 		return helpers.InvalidRequest
 	}
 
 	if todoRequest.GetDescription() == "" || todoRequest.GetDescription() == " " {
+		logrus.Error("GetDescription() null")
 		return helpers.InvalidRequest
 	}
 	if todoRequest.GetNotification().Email.Notification == false && todoRequest.GetNotification().Message.Notification == false {
+		logrus.Error("GetNotification Email() null")
 		return helpers.InvalidRequest
 	}
 
@@ -284,12 +290,14 @@ func ValidateCreateTodo(todoRequest *amProto.CreateTodoListRequest) error {
 	requestTime := todoRequest.GetDueDate()
 	formatedTime, err := time.Parse(time.RFC3339, requestTime)
 	if err != nil {
+		logrus.Error("GetDueDate() null")
 		return helpers.InvalidRequest
 	}
 	serverTime := time.Date(currentTime.Year(), currentTime.Month(), currentTime.Day(), currentTime.Hour(), currentTime.Minute(), currentTime.Second(), currentTime.Nanosecond(), currentTime.Location())
 	clientTime := time.Date(formatedTime.Year(), formatedTime.Month(), formatedTime.Day(), formatedTime.Hour(), formatedTime.Minute(), formatedTime.Second(), formatedTime.Nanosecond(), formatedTime.Location())
 
 	if clientTime.Before(serverTime) {
+		logrus.Error("Before() null")
 		return helpers.InvalidRequest
 	}
 
@@ -297,21 +305,27 @@ func ValidateCreateTodo(todoRequest *amProto.CreateTodoListRequest) error {
 	todoRequest.CustomDueDate = formatedTime.String()
 
 	if todoRequest.GetNotification().GetEmail().GetNotification() == true {
+		logrus.Error("GetNotification().GetEmail()() null")
 		if todoRequest.GetNotification().GetEmail().GetEmailID() == "" {
+			logrus.Error("GetEmail() null")
 			return helpers.InvalidRequest
 		}
 	}
 	if todoRequest.GetNotification().GetMessage().GetNotification() == true {
+		logrus.Error("GetMessage() null")
 		if todoRequest.GetNotification().GetMessage().GetMobileNumber() == "" {
+			logrus.Error("GetMessage() null")
 			return helpers.InvalidRequest
 		}
 		if todoRequest.Notification.Message.MobileNumber == "" {
+			logrus.Error("MobileNumber() null")
 			return helpers.InvalidRequest
 		}
 	}
 	tasks := todoRequest.GetSubTask()
 	for i, v := range tasks {
 		if v.GetOffset() <= 0 && v.GetOffset() != int32(i) {
+			logrus.Error("GetOffset() null")
 			return helpers.InvalidRequest
 		}
 	}

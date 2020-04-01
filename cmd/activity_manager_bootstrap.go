@@ -17,6 +17,7 @@ import (
 
 func main() {
 	logrus.SetFormatter(&logrus.JSONFormatter{TimestampFormat: time.RFC3339})
+	logrus.Info("Inside the main")
 	r := mux.NewRouter().StrictSlash(false)
 	//helpers.SetEnv()
 	connection := database.MongoConnection{}

@@ -3,6 +3,7 @@ package controller
 import (
 	"context"
 	"fmt"
+	"github.com/sirupsen/logrus"
 	"github.com/velann21/todo_list_activity_manager/pkg/entities/requests"
 	proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 )
@@ -12,10 +13,12 @@ func (controller Controller)CreateTodo(ctx context.Context, req *proto.CreateTod
 	fmt.Println("CreateTodo")
 	err := requests.ValidateCreateTodo(req)
 	if err != nil{
+		logrus.WithError(err).Error("err")
 		return nil, err
 	}
 	id, err := controller.Service.TodoCreateService(ctx, req)
 	if err != nil {
+		logrus.WithError(err).Error("err")
 		return nil, err
 	}
 	createTodoResp := proto.CreateTodoListResponse{
