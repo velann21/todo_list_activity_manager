@@ -11,13 +11,20 @@ pipeline {
                 sh 'go build ./cmd/activity_manager_bootstrap.go'
                 sh 'go test ./...'
 
-                script {
-                                 def customImage = docker.build('singaravelan21/todo_list_manager', ".")
-                                 docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                                 customImage.push("${env.BUILD_NUMBER}")
-                                 }
-                       }
+
             }
+
         }
+
+        stage('Build docker image') {
+                   steps {
+                       script {
+                               def customImage = docker.build('singaravelan21/todo_list_manager', "./")
+                               docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                               customImage.push("${env.BUILD_NUMBER}")
+                                }
+                               }
+                }
+        	  }
+            }
     }
-}
