@@ -4,8 +4,11 @@ pipeline {
         stage('build') {
             steps {
                 sh 'go version'
-                sh 'go build ./cmd/activity_manager_bootstrap.go'
-                sh 'ls -a'
+                sh 'cd ${GOPATH}/src'
+                sh 'mkdir -p ${GOPATH}/src/YOUR_PROJECT_DIRECTORY'
+                sh 'cp -r ${WORKSPACE}/* ${GOPATH}/src/YOUR_PROJECT_DIRECTORY'
+                sh 'cp -r ${WORKSPACE}/vendor/* ${GOPATH}/src'
+                sh 'go clean -cache'
 
             }
         }
