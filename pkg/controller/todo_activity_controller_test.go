@@ -8,6 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	dm "github.com/velann21/todo_list_activity_manager/pkg/entities/database_model"
 	"github.com/velann21/todo_list_activity_manager/pkg/entities/requests"
+	proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 	"github.com/velann21/todo_list_activity_manager/pkg/service"
 	"net/http"
 	"net/http/httptest"
@@ -19,21 +20,22 @@ type TodoListActivityManagerSrvMock struct {
 	Err string
 
 }
-func (todoListActivityManagerSrvMock *TodoListActivityManagerSrvMock) TodoCreateService(ctx context.Context, req *requests.TodoRequest) (*string, error){
+
+func (todoListActivityManagerSrvMock *TodoListActivityManagerSrvMock) TodoCreateService(ctx context.Context, req *proto.CreateTodoListRequest) (*string, error){
 	if todoListActivityManagerSrvMock.Err == "err"{
 		return nil, errors.New("Something went wrong")
 	}
     userID := "velann21@gmail.com"
 	return &userID,nil
 }
-func (todoListActivityManagerSrvMock *TodoListActivityManagerSrvMock) TodoGetService(ctx context.Context, req requests.GetTodo) (*requests.TodoRequest, error){
-	request := requests.TodoRequest{}
+func (todoListActivityManagerSrvMock *TodoListActivityManagerSrvMock) TodoGetService(ctx context.Context, req requests.GetTodo) (*proto.CreateTodoListRequest, error){
+	request := proto.CreateTodoListRequest{}
 	return &request, nil
 }
 func (todoListActivityManagerSrvMock *TodoListActivityManagerSrvMock) TodoDeleteService(ctx context.Context, req *requests.DeleteTodoRequest) error {
 	return nil
 }
-func (todoListActivityManagerSrvMock *TodoListActivityManagerSrvMock) TodoUpdateService(ctx context.Context, req *requests.UpdateTodoStruct) (*string, error) {
+func (todoListActivityManagerSrvMock *TodoListActivityManagerSrvMock) TodoUpdateService(ctx context.Context, req *proto.UpdateTodoListRequest) (*string, error) {
 	userID := "velann21@gmail.com"
 	return &userID,nil
 }
