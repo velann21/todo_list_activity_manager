@@ -8,7 +8,7 @@ pipeline {
                 sh 'export XDG_CACHE_HOME=/tmp/'
                 sh 'echo $XDG_CACHE_HOME'
                 sh 'ls -a'
-                sh 'make build'
+                sh 'sudo make build'
 
             }
         }
