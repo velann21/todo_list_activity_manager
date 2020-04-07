@@ -2,8 +2,12 @@ package main
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/sirupsen/logrus"
 	"github.com/velann21/todo_list_activity_manager/pkg/database"
+	"github.com/velann21/todo_list_activity_manager/pkg/helpers"
 	proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 	"github.com/velann21/todo_list_activity_manager/pkg/routes"
 	"google.golang.org/grpc"
@@ -12,6 +16,8 @@ import (
 	"net/http"
 	"os"
 	"time"
+	//"github.com/prometheus/client_golang/prometheus/promhttp"
+
 )
 
 
@@ -19,7 +25,7 @@ func main() {
 	logrus.SetFormatter(&logrus.JSONFormatter{TimestampFormat: time.RFC3339})
 	logrus.Info("Inside the main")
 	r := mux.NewRouter().StrictSlash(false)
-	//helpers.SetEnv()
+	helpers.SetEnv()
 	connection := database.MongoConnection{}
 	err := connection.MongoConnection()
 	if err != nil {
@@ -40,6 +46,13 @@ func main() {
 		}
 	}()
 
+	go func(){
+		recordMetrics()
+		logrus.Info("Starting the metrics server")
+		http.Handle("/metrics", promhttp.Handler())
+		http.ListenAndServe(":2112", nil)
+	}()
+
 	mainRoutes := r.PathPrefix("/api/v1/todo").Subrouter()
 	routes.Routes(mainRoutes)
 	logrus.WithField("EventType", "Bootup").Info("Booting up server at port : " + "8086")
@@ -48,4 +61,24 @@ func main() {
 		log.Fatal(err)
 	}
 
+}
+
+
+var (
+	opsProcessed = promauto.NewCounter(prometheus.CounterOpts{
+		Name: "myapp_processed_ops_total",
+		Help: "The total number of processed events",
+	})
+
+
+)
+
+
+func recordMetrics() {
+	go func() {
+		for {
+			opsProcessed.Inc()
+			time.Sleep(2 * time.Second)
+		}
+	}()
 }
