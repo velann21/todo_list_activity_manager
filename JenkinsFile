@@ -1,5 +1,8 @@
 pipeline {
-    agent { docker { image 'golang' } }
+    agent { docker {
+    image 'golang'
+    args '-u root:sudo -v $HOME'
+    } }
     stages {
         stage('build') {
             steps {
