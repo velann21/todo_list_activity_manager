@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbf0d22d-d043-45a3-ba77-47ea56818887" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/JenkinsFile" beforeDir="false" afterPath="$PROJECT_DIR$/JenkinsFile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,7 +18,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pkg/controller/todo_activity_grpc_controller.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="29">
               <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="68" />
             </state>
           </provider>
@@ -28,8 +27,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cmd/activity_manager_bootstrap.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="52" column="34" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="34" />
+            <state relative-caret-position="320">
+              <caret line="53" column="7" lean-forward="true" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
               <folding>
                 <element signature="e#14#505#0" expanded="true" />
               </folding>
@@ -55,7 +54,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pkg/routes/todo_activity_routes.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="12" column="63" lean-forward="true" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JenkinsFile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
@@ -64,15 +72,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="207">
+              <caret line="79" column="25" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
               <folding>
                 <element signature="e#20#392#0" expanded="true" />
-                <element signature="n#!!block;n#TodoCreateService#0" />
-                <element signature="n#!!block;n#TodoGetService#0" />
                 <element signature="n#!!block;n#TodoDeleteService#0" />
                 <element signature="n#!!block;n#TodoUpdateService#0" />
                 <element signature="n#!!block;n#TodoDueDateRangeQuery#0" />
@@ -92,28 +98,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deployments/docker/Dockerfile">
+        <entry file="file://$PROJECT_DIR$/pkg/controller/todo_activity.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="42" selection-start-line="1" selection-end-line="8" selection-end-column="42" />
+            <state relative-caret-position="162">
+              <caret line="27" column="28" lean-forward="true" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Dockerfile">
+        <entry file="file://$PROJECT_DIR$/pkg/entities/requests/TodoRequest.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="109" selection-start-line="5" selection-start-column="109" selection-end-line="5" selection-end-column="109" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deployments/makefile/Makefile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="3" selection-end-line="9" />
+            <state relative-caret-position="159">
+              <caret line="261" selection-start-line="261" selection-end-line="261" />
             </state>
           </provider>
         </entry>
@@ -194,8 +191,8 @@
         <option value="$PROJECT_DIR$/DockerFile" />
         <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$PROJECT_DIR$/Makefile" />
-        <option value="$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go" />
         <option value="$PROJECT_DIR$/JenkinsFile" />
+        <option value="$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go" />
       </list>
     </option>
   </component>
@@ -296,22 +293,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Test.go test todo_list_activity_manager">
+  <component name="RunManager" selected="Go Test.todo_activity_controller_test.go">
     <configuration name="go build activity_manager_bootstrap.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="todo_list_activity_manager" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/cmd/activity_manager_bootstrap.go" />
-      <package value="github.com/todo_list_activity_manager" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build client.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="todo_list_activity_manager" />
-      <working_directory value="$PROJECT_DIR$" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/cmd/client.go" />
       <package value="github.com/todo_list_activity_manager" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
@@ -323,6 +311,17 @@
       <filePath value="$PROJECT_DIR$/cmd/main.go" />
       <package value="github.com/velann21/todo_list_activity_manager" />
       <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestController_CreateTodoController in github.com/velann21/todo_list_activity_manager/pkg/controller" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="todo_list_activity_manager" />
+      <working_directory value="$PROJECT_DIR$/pkg/controller" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/velann21/todo_list_activity_manager/pkg/controller" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^TestController_CreateTodoController$" />
       <method v="2" />
     </configuration>
     <configuration name="go test todo_list_activity_manager" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -340,25 +339,22 @@
       <working_directory value="$PROJECT_DIR$/pkg/controller" />
       <framework value="gotest" />
       <kind value="FILE" />
-      <package value="github.com/todo_list_activity_manager" />
+      <package value="github.com/velann21/todo_list_activity_manager" />
       <directory value="$PROJECT_DIR$/" />
       <filePath value="$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.todo_activity_controller_test.go" />
+        <item itemvalue="Go Test.TestController_CreateTodoController in github.com/velann21/todo_list_activity_manager/pkg/controller" />
         <item itemvalue="Go Test.go test todo_list_activity_manager" />
         <item itemvalue="Go Build.go build activity_manager_bootstrap.go" />
         <item itemvalue="Go Build.go build main.go" />
-        <item itemvalue="Go Build.go build client.go" />
-        <item itemvalue="Go Test.todo_activity_controller_test.go" />
       </list>
     </recent_temporary>
   </component>
   <component name="TestHistory">
-    <history-entry file="TestController_CreateTodoWithoutDueDate_in_github_com_todo_list_activity_manager_pkg_controller - 2020.03.27 at 22h 28m 06s.xml">
-      <configuration name="TestController_CreateTodoWithoutDueDate in github.com/todo_list_activity_manager/pkg/controller" configurationId="GoTestRunConfiguration" />
-    </history-entry>
     <history-entry file="TestController_CreateTodoWithoutDueDate_in_github_com_todo_list_activity_manager_pkg_controller - 2020.03.27 at 22h 28m 17s.xml">
       <configuration name="TestController_CreateTodoWithoutDueDate in github.com/todo_list_activity_manager/pkg/controller" configurationId="GoTestRunConfiguration" />
     </history-entry>
@@ -386,25 +382,28 @@
     <history-entry file="go_test_todo_list_activity_manager - 2020.04.07 at 22h 58m 29s.xml">
       <configuration name="go test todo_list_activity_manager" configurationId="GoTestRunConfiguration" />
     </history-entry>
+    <history-entry file="TestController_CreateTodoController_in_github_com_velann21_todo_list_activity_manager_pkg_controller - 2020.04.07 at 23h 11m 56s.xml">
+      <configuration name="TestController_CreateTodoController in github.com/velann21/todo_list_activity_manager/pkg/controller" configurationId="GoTestRunConfiguration" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="814" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49903288" visible="true" weight="0.27161384" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49903288" visible="true" weight="0.27161384" />
       <window_info id="Structure" order="1" sideWeight="0.50096714" side_tool="true" weight="0.27161384" />
       <window_info id="Favorites" order="2" sideWeight="0.50096714" side_tool="true" weight="0.27161384" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32859176" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32716927" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.37997258" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.37980086" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4985591" visible="true" weight="0.3328592" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4985591" weight="0.3328592" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50144094" side_tool="true" weight="0.3328592" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -515,7 +514,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go</url>
-          <line>393</line>
+          <line>391</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
@@ -569,6 +568,12 @@
           <line>8</line>
           <properties />
           <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/pkg/entities/requests/TodoRequest.go</url>
+          <line>260</line>
+          <properties />
+          <option name="timeStamp" value="57" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -735,13 +740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/routes/todo_activity_routes.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="17" column="94" selection-start-line="17" selection-start-column="94" selection-end-line="17" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pkg/database/mongo_connection.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -756,13 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="7" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/entities/requests/TodoRequest.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3647">
-          <caret line="308" column="62" selection-start-line="308" selection-start-column="52" selection-end-line="308" selection-end-column="62" />
         </state>
       </provider>
     </entry>
@@ -818,13 +809,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/controller/todo_activity.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1819">
-          <caret line="116" column="42" selection-start-line="116" selection-start-column="42" selection-end-line="116" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/go.mod">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -841,16 +825,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cmd/main.go">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmd/activity_manager_bootstrap.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="52" column="34" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="34" />
-          <folding>
-            <element signature="e#14#505#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/deployments/docker/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
@@ -894,33 +868,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/JenkinsFile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmd/activity_manager_bootstrap.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="53" column="7" lean-forward="true" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
+          <folding>
+            <element signature="e#14#505#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/routes/todo_activity_routes.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="63" lean-forward="true" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pkg/controller/todo_activity_grpc_controller.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="29">
           <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/controller/todo_activity.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="27" column="28" lean-forward="true" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/entities/requests/TodoRequest.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="261" selection-start-line="261" selection-end-line="261" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="207">
+          <caret line="79" column="25" selection-start-line="79" selection-start-column="25" selection-end-line="79" selection-end-column="25" />
           <folding>
             <element signature="e#20#392#0" expanded="true" />
-            <element signature="n#!!block;n#TodoCreateService#0" />
-            <element signature="n#!!block;n#TodoGetService#0" />
             <element signature="n#!!block;n#TodoDeleteService#0" />
             <element signature="n#!!block;n#TodoUpdateService#0" />
             <element signature="n#!!block;n#TodoDueDateRangeQuery#0" />
             <element signature="n#!!block;n#GetUserTodoActivityService#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JenkinsFile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
         </state>
       </provider>
     </entry>
