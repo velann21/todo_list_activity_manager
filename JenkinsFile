@@ -4,11 +4,8 @@ pipeline {
         stage('build') {
             steps {
                 sh 'go version'
-                sh 'cd deployments'
-                sh 'export XDG_CACHE_HOME=/tmp/'
-                sh 'echo $XDG_CACHE_HOME'
+                sh 'go build ./cmd/activity_manager_bootstrap.go'
                 sh 'ls -a'
-                sh 'sudo make build'
 
             }
         }
