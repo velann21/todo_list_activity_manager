@@ -5,8 +5,10 @@ pipeline {
             steps {
                 sh 'go version'
                 sh 'cd deployments'
+                sh 'export XDG_CACHE_HOME=/tmp'
                 sh 'ls -a'
-                sh 'docker ps'
+                sh 'make build'
+
             }
         }
     }
