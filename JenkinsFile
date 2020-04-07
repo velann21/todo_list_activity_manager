@@ -6,7 +6,7 @@ pipeline {
                 sh 'go version'
                 sh 'cd deployments'
                 sh 'ls -a'
-                sh 'make build'
+                sh 'docker ps'
             }
         }
     }
