@@ -14,7 +14,7 @@ pipeline {
                 script {
                                  def customImage = docker.build('singaravelan21/todo_list_manager', ".")
                                  docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                                 customImage.push("${2.0.0}")
+                                 customImage.push("${env.BUILD_NUMBER}")
                                  }
                        }
             }
