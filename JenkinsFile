@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh 'go version'
                 sh 'cd deployments/makefile'
-                sh 'make release'
+                sh 'ls -a'
             }
         }
     }
