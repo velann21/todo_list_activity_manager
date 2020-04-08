@@ -1,12 +1,7 @@
-def dockerVersion() {
-    println(str);
+def test1(first){
+    //add code for this method
 }
-
-def testTwo() {
-    print "Hello World"
+def test2(){
+    //add code for this method
 }
-
-return [
-    firstTest: this.&firstTest,
-    testTwo: this.&testTwo
-]
+return this

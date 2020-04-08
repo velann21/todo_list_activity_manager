@@ -1,3 +1,4 @@
+def modules = [:]
 pipeline {
     agent none
     stages {
@@ -31,8 +32,8 @@ pipeline {
                                            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                                            customImage.push("${env.BUILD_NUMBER}")
                                            def externalMethod = evaluate readTrusted("file.groovy")
-                                           def loadedfunc = load("file.groovy")
-                                           loadedfunc.dockerVersion()
+                                           modules.loadedfunc = load "file.groovy"
+                                           modules.loadedfunc.test1("velan")
                                            sh 'docker system prune'
                                             }
                                            }
