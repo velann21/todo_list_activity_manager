@@ -1,7 +1,20 @@
 pipeline {
-    agent any
+    agent none
     stages {
+
+         stage('init') {
+                  agent { docker {image 'golang'args '-u root:sudo -v $HOME } }
+                   steps {
+                                          sh 'go version'
+                                          sh 'go clean -cache'
+                                          sh 'go build ./cmd/activity_manager_bootstrap.go'
+                                          sh 'go test ./...'
+                                          sh 'whoami'
+                         }
+
+               }
         stage('build') {
+           agent any
             steps {
                                    script {
                                            def customImage = docker.build('singaravelan21/todo_list_manager', "./")
