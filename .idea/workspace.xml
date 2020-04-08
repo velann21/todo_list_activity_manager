@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbf0d22d-d043-45a3-ba77-47ea56818887" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/JenkinsFile" beforeDir="false" afterPath="$PROJECT_DIR$/JenkinsFile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/file.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/file.groovy" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,7 +78,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/JenkinsFile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="202">
@@ -88,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/file.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="9" selection-start-column="4" selection-end-column="9" />
+            <state relative-caret-position="17">
+              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -190,8 +189,8 @@
         <option value="$PROJECT_DIR$/Makefile" />
         <option value="$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go" />
         <option value="$PROJECT_DIR$/cmd/main.go" />
-        <option value="$PROJECT_DIR$/file.groovy" />
         <option value="$PROJECT_DIR$/JenkinsFile" />
+        <option value="$PROJECT_DIR$/file.groovy" />
       </list>
     </option>
   </component>
@@ -894,17 +893,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/file.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="4" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/JenkinsFile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="35" column="74" selection-start-line="35" selection-start-column="74" selection-end-line="35" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/file.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
         </state>
       </provider>
     </entry>

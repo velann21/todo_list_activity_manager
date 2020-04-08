@@ -1,5 +1,5 @@
 def test1(first){
-    //add code for this method
+    println(first);
 }
 def test2(){
     //add code for this method
