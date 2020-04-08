@@ -3,7 +3,11 @@ pipeline {
     stages {
 
          stage('init') {
-                  agent { docker {image 'golang'args '-u root:sudo -v $HOME } }
+                  agent { docker {
+                    image 'golang'
+                    args '-u root:sudo -v $HOME'
+                     }
+                    }
                    steps {
                                           sh 'go version'
                                           sh 'go clean -cache'
