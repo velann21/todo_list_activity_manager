@@ -24,7 +24,9 @@ pipeline {
                                            def customImage = docker.build('singaravelan21/todo_list_manager', "./")
                                            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                                            customImage.push("${env.BUILD_NUMBER}")
-                                           sh "docker rmi ${customImage.id}"
+                                           def externalMethod = evaluate readTrusted("file1.groovy")
+                                           def externalMethod = load("file.groovy")
+                                           externalMethod.firstTest()
                                             }
                                            }
                             }
