@@ -13,10 +13,24 @@ pipeline {
                                           sh 'go clean -cache'
                                           sh 'go build ./cmd/activity_manager_bootstrap.go'
                                           sh 'go test ./...'
-                                          sh 'whoami'
                          }
 
                }
+
+
+               stage('init') {
+                                 agent { docker {
+                                   image 'golang'
+                                   args '-u root:sudo -v $HOME'
+                                    }
+                                   }
+                                  steps {
+
+                                                         sh 'go test ./...'
+                                        }
+
+                              }
+
         stage('build') {
            agent any
             steps {
@@ -24,6 +38,7 @@ pipeline {
                                            def customImage = docker.build('singaravelan21/todo_list_manager', "./")
                                            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                                            customImage.push("${env.BUILD_NUMBER}")
+                                           docker system prune
                                             }
                                            }
                             }
