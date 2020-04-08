@@ -1,16 +1,8 @@
 pipeline {
-    agent { docker {
-    image 'golang'
-    args '-u root:sudo -v $HOME'
-    } }
+    agent any
     stages {
         stage('build') {
             steps {
-                sh 'go version'
-                sh 'go clean -cache'
-                sh 'go build ./cmd/activity_manager_bootstrap.go'
-                sh 'go test ./...'
-                sh 'whoami'
 
             }
 
