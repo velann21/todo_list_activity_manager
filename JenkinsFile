@@ -3,20 +3,16 @@ pipeline {
     stages {
         stage('build') {
             steps {
-
-            }
+                                   script {
+                                           def customImage = docker.build('singaravelan21/todo_list_manager', "./")
+                                           docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                                           customImage.push("${env.BUILD_NUMBER}")
+                                            }
+                                           }
+                            }
 
         }
 
-        stage('Build docker image') {
-                   steps {
-                       script {
-                               def customImage = docker.build('singaravelan21/todo_list_manager', "./")
-                               docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                               customImage.push("${env.BUILD_NUMBER}")
-                                }
-                               }
-                }
-        	  }
+
             }
     }
