@@ -1,4 +1,4 @@
-def firstTest(String str) {
+def dockerVersion() {
     println(str);
 }
 
@@ -6,8 +6,7 @@ def testTwo() {
     print "Hello World"
 }
 
-def dockerVersion(String a) {
-            echo a
-}
-
-return this
+return [
+    firstTest: this.&firstTest,
+    testTwo: this.&testTwo
+]
