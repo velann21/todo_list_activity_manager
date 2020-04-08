@@ -1,5 +1,5 @@
-def firstTest() {
-    print "Hello World"
+def firstTest(String str) {
+    println(str);
 }
 
 def testTwo() {
