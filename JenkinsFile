@@ -25,8 +25,8 @@ pipeline {
                                            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                                            customImage.push("${env.BUILD_NUMBER}")
                                            def externalMethod = evaluate readTrusted("file1.groovy")
-                                           def externalMethod = load("file.groovy")
-                                           externalMethod.firstTest()
+                                           def loadedfunc = load("file.groovy")
+                                           loadedfunc.firstTest()
                                             }
                                            }
                             }
