@@ -17,20 +17,6 @@ pipeline {
 
                }
 
-
-               stage('init') {
-                                 agent { docker {
-                                   image 'golang'
-                                   args '-u root:sudo -v $HOME'
-                                    }
-                                   }
-                                  steps {
-
-                                                         sh 'go test ./...'
-                                        }
-
-                              }
-
         stage('build') {
            agent any
             steps {
