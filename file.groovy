@@ -6,7 +6,8 @@ def testTwo() {
     print "Hello World"
 }
 
-return [
-    firstTest: this.&firstTest,
-    testTwo: this.&testTwo
-]
+def dockerVersion(String a) {
+            echo a
+}
+
+return this
