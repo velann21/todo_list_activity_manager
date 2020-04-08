@@ -8,6 +8,9 @@ pipeline {
                     args '-u root:sudo -v $HOME'
                      }
                     }
+                   when{
+                     branch 'development'
+                   }
                    steps {
                                           sh 'go version'
                                           sh 'go clean -cache'
@@ -18,7 +21,7 @@ pipeline {
                }
 
         stage('build') {
-           agent any
+           agent { label 'slave2' }
             steps {
                                    script {
                                            def customImage = docker.build('singaravelan21/todo_list_manager', "./")
