@@ -33,7 +33,7 @@ pipeline {
                                            customImage.push("${env.BUILD_NUMBER}")
                                            def externalMethod = evaluate readTrusted("file.groovy")
                                            modules.loadedfunc = load "file.groovy"
-                                           modules.loadedfunc.test1(customImage)
+                                           modules.loadedfunc.test1(customImage.id)
                                            sh 'docker system prune'
                                             }
                                            }
