@@ -4,12 +4,17 @@ pipeline {
     stages {
 
          stage('init') {
-           agent { docker {image 'golang'  args '-u root:sudo -v $HOME'}}
-            steps {
-                          sh 'go version'
-                          sh 'go clean -cache'
-                          sh 'go test ./...'
-                  }
+                  agent { docker {
+                    image 'golang'
+                    args '-u root:sudo -v $HOME'
+                     }
+                    }
+
+                   steps {
+                                          sh 'go version'
+                                          sh 'go clean -cache'
+                                          sh 'go test ./...'
+                         }
                }
         stage('build') {
            agent { label 'slave2' }
@@ -19,11 +24,10 @@ pipeline {
                                            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                                            customImage.push("v1.0."+"${env.BUILD_NUMBER}")
                                            sh 'docker system prune -af --volumes'
-
                                             }
                                            }
-
                   }
+
         }
       }
     }
