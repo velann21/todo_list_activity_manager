@@ -1,6 +1,6 @@
 def modules = [:]
 pipeline {
-    agent { label 'master' }
+    agent none
     stages {
 
          stage('init') {
@@ -9,13 +9,10 @@ pipeline {
                     args '-u root:sudo -v $HOME'
                      }
                     }
-                   when{
-                     branch '*/master'
-                   }
+
                    steps {
                                           sh 'go version'
                                           sh 'go clean -cache'
-                                          sh 'go build ./cmd/activity_manager_bootstrap.go'
                                           sh 'go test ./...'
                          }
 
