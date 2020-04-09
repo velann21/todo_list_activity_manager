@@ -10,7 +10,7 @@ pipeline {
                      }
                     }
                    when{
-                     branch 'development'
+                     branch 'master'
                    }
                    steps {
                                           sh 'go version'
