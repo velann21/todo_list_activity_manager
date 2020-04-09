@@ -1,6 +1,6 @@
 def modules = [:]
 pipeline {
-    agent { label 'slave2' }
+    agent { label 'master' }
     stages {
 
          stage('init') {
@@ -10,7 +10,7 @@ pipeline {
                      }
                     }
                    when{
-                     branch master
+                     branch '*/master'
                    }
                    steps {
                                           sh 'go version'
@@ -27,15 +27,13 @@ pipeline {
                                    script {
                                            def customImage = docker.build('singaravelan21/todo_list_manager', "./")
                                            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                                           customImage.push("${env.BUILD_NUMBER}")
+                                           customImage.push("v1.0."+"${env.BUILD_NUMBER}")
                                            sh 'docker system prune -af --volumes'
                                             }
                                            }
-                            }
+                  }
 
         }
-
-
-            }
+      }
     }
 
