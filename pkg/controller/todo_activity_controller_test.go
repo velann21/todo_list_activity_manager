@@ -101,7 +101,7 @@ func TestController_CreateTodoController(t *testing.T) {
 	response := httptest.NewRecorder()
 	Router(&TodoListActivityManagerSrvMock{}).ServeHTTP(response, request)
 	fmt.Println(response.Body)
-	assert.Equal(t, 201, response.Code, "OK response is expected")
+	assert.Equal(t, 200, response.Code, "OK response is expected")
 }
 
 //func TestController_CreateTodoControllerServiceReturnErr(t *testing.T) {
