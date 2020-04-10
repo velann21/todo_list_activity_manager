@@ -46,6 +46,7 @@ func main() {
 		}
 	}()
 
+
 	go func(){
 		recordMetrics()
 		logrus.Info("Starting the metrics server in port 2112")
