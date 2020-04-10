@@ -23,6 +23,9 @@ pipeline {
                }
         stage('build') {
            agent { label 'slave2' }
+            when {
+                                                                  branch 'master'
+                                    }
             steps {
                                    script {
                                            def customImage = docker.build('singaravelan21/todo_list_manager', "./")
