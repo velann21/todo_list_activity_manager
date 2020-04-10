@@ -38,6 +38,7 @@ pipeline {
                                            sh 'docker system prune -af --volumes'
                                            sh 'whoami'
                                            sh 'export KUBECONFIG=/home/ec2-user/config'
+                                           sh 'echo $KUBECONFIG '
                                            sh 'cat /home/ec2-user/config'
                                            sh '/usr/local/bin/helm list'
                                             }
