@@ -40,7 +40,7 @@ pipeline {
                                            sh 'export KUBECONFIG=/home/ec2-user/config'
                                            sh 'echo $KUBECONFIG'
                                            sh 'cat /home/ec2-user/config'
-                                           sh '/usr/local/bin/kubectl get po --kubeconfig /home/ec2-user/config
+                                           sh '/usr/local/bin/kubectl get po --kubeconfig /home/ec2-user/config'
                                            sh '/usr/local/bin/helm init --client-only'
                                            sh '/usr/local/bin/helm list'
                                             }
