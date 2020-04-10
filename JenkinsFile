@@ -1,8 +1,5 @@
 def modules = [:]
 pipeline {
-    triggers {
-        githubPush()
-    }
     agent none
     stages {
 
@@ -44,23 +41,12 @@ pipeline {
 
 
                 stage('deployment') {
-
                 environment {
                     BUILD_NUMBER = "${env.BUILD_NUMBER}"
                   }
                    agent { label 'slave2' }
-
-
                     steps {
                                            script {
-                                                   sh 'export KUBECONFIG=/home/ec2-user/config'
-                                                   sh 'echo $KUBECONFIG'
-                                                   sh 'cat /home/ec2-user/config'
-                                                   sh '/usr/local/bin/kubectl get po --kubeconfig /home/ec2-user/config'
-                                                   sh '/usr/local/bin/helm init --client-only'
-                                                   sh 'pwd'
-                                                   sh '/usr/local/bin/helm list --kubeconfig /home/ec2-user/config'
-                                                   sh 'echo $BUILD_NUMBER'
                                                    sh '/usr/local/bin/helm upgrade --install my-todo-manager ./deployments/helmchart/todo-manager/todo-manager-0.1.0.tgz --set tag="v1.0.""$BUILD_NUMBER" --set replicaCount=3 --kubeconfig /home/ec2-user/config'
                                                     }
                                                    }
