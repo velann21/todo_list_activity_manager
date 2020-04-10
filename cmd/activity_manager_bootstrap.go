@@ -48,7 +48,7 @@ func main() {
 
 	go func(){
 		recordMetrics()
-		logrus.Info("Starting the metrics server")
+		logrus.Info("Starting the metrics server in port 2112")
 		http.Handle("/metrics", promhttp.Handler())
 		http.ListenAndServe(":2112", nil)
 	}()
