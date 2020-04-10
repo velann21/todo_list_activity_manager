@@ -1,5 +1,8 @@
 def modules = [:]
 pipeline {
+    triggers {
+        githubPush()
+    }
     agent none
     stages {
 
