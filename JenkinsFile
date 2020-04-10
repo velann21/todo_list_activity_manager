@@ -11,7 +11,7 @@ pipeline {
                     }
 
                     when {
-                                    branch 'master'
+                                    branch 'develop'
                          }
 
                    steps {
@@ -25,7 +25,7 @@ pipeline {
            agent { label 'slave2' }
 
             when {
-                                                                  branch 'master'
+                                                                  branch 'develop'
                                     }
             steps {
                                    script {
