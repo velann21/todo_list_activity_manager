@@ -26,12 +26,7 @@ pipeline {
                          }
                }
         stage('build') {
-           agent { node {
-                label  'slave2'
-                 args '-u root:sudo -v $HOME'
-           }
-
-           }
+           agent { label 'slave2' }
 
             when {
                                                                   branch 'develop'
