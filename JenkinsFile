@@ -10,7 +10,12 @@ pipeline {
                      }
                     }
 
+                    when {
+                                    branch 'master'
+                         }
+
                    steps {
+                                          sh 'git checkout master'
                                           sh 'go version'
                                           sh 'go clean -cache'
                                           sh 'go test ./...'
@@ -29,6 +34,24 @@ pipeline {
                   }
 
         }
+
+             stage('deploy') {
+                   agent { label 'master' }
+
+                    when {
+                                                       branch 'master'
+                         }
+                    steps {
+                                           script {
+                                                   def customImage = docker.build('singaravelan21/todo_list_manager', "./")
+                                                   docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                                                   customImage.push("v1.0."+"${env.BUILD_NUMBER}")
+                                                   sh 'docker system prune -af --volumes'
+                                                    }
+                                                   }
+                          }
+
+                }
       }
     }
 
