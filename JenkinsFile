@@ -36,6 +36,7 @@ pipeline {
                                            customImage.push("v1.0."+"${env.BUILD_NUMBER}")
                                            sh 'docker system prune -af --volumes'
                                            sh 'su ec2-user'
+                                           sh 'whoami'
                                            sh 'export KUBECONFIG=/home/ec2-user/config'
                                            sh 'helm list'
                                             }
