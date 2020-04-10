@@ -54,7 +54,6 @@ func main() {
 	}()
 
 
-
 	mainRoutes := r.PathPrefix("/api/v1/todo").Subrouter()
 	routes.Routes(mainRoutes)
 	logrus.WithField("EventType", "Bootup").Info("Booting up server at port : " + "8086")
