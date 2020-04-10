@@ -22,6 +22,7 @@ pipeline {
                                           sh 'go version'
                                           sh 'go clean -cache'
                                           sh 'go test ./...'
+
                          }
                }
         stage('build') {
