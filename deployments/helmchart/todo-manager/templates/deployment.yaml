@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-deployment
+  labels:
+    app: todosrv
+spec:
+  template:
+    metadata:
+      name: todopod
+      labels:
+        app: todosrv
+    spec:
+      containers:
+        - name: todosrv
+          image: singaravelan21/todo_list_manager:{{ .Values.tag }}
+          env:
+            - name: MONGO_CONN
+              value: activitymanager-database:27017
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: todosrv
