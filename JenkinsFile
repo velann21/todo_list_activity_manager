@@ -42,7 +42,8 @@ pipeline {
                                            sh 'cat /home/ec2-user/config'
                                            sh '/usr/local/bin/kubectl get po --kubeconfig /home/ec2-user/config'
                                            sh '/usr/local/bin/helm init --client-only'
-                                           sh '/usr/local/bin/helm list'
+                                           sh 'pwd'
+                                           sh '/usr/local/bin/helm list --kubeconfig /home/ec2-user/config'
                                             }
                                            }
                   }
