@@ -36,10 +36,8 @@ pipeline {
                                            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                                            customImage.push("v1.0."+"${env.BUILD_NUMBER}")
                                            sh 'docker system prune -af --volumes'
-                                           sh 'sudo su -s /bin/bash ec2-user'
-                                           sh 'whoami'
                                            sh 'export KUBECONFIG=/home/ec2-user/config'
-                                           sh 'helm list'
+                                           sh '/usr/local/bin/helm list'
                                             }
                                            }
                   }
