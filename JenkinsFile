@@ -30,12 +30,13 @@ pipeline {
 
 
             steps {
+
                                    script {
                                            def customImage = docker.build('singaravelan21/todo_list_manager', "./")
                                            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                                            customImage.push("v1.0."+"${env.BUILD_NUMBER}")
                                            sh 'docker system prune -af --volumes'
-                                           sh 'su ec2-user'
+                                           sudo su -s /bin/bash ec2-user
                                            sh 'whoami'
                                            sh 'export KUBECONFIG=/home/ec2-user/config'
                                            sh 'helm list'
