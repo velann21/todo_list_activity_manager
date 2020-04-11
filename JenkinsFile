@@ -47,7 +47,7 @@ pipeline {
                    agent { label 'slave2' }
                     steps {
                                            script {
-                                                   sh '/usr/local/bin/helm upgrade --install my-todo-manager ./deployments/helmchart/todo-manager/todo-manager-0.1.0.tgz --set tag="v1.0.""$BUILD_NUMBER" --set replicaCount=3 --kubeconfig /home/ec2-user/config'
+                                                   sh '/usr/local/bin/helm upgrade --install --atomic --wait my-todo-manager ./deployments/helmchart/todo-manager/todo-manager-0.1.0.tgz --set tag="v1.0.""$BUILD_NUMBER" --set replicaCount=3 --kubeconfig /home/ec2-user/config'
                                                     }
                                                    }
                           }
