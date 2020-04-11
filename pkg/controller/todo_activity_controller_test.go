@@ -77,7 +77,7 @@ func TestController_CreateTodoController(t *testing.T) {
 			"mobileNumber":"9894628382"
 		}
 	},
-	"dueDate":"2020-04-10T20:37:02+00:00",
+	"dueDate":"2020-04-14T20:37:02+00:00",
 	"repeatMode":false,
 	"tag":1,
 	"subtask":[
