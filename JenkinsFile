@@ -3,7 +3,7 @@ pipeline {
     agent none
     stages {
 
-         stage('init') {
+         stage('unit test') {
                   agent { docker {
                     image 'golang'
                     args '-u root:sudo -v $HOME'
@@ -11,23 +11,23 @@ pipeline {
                     }
 
                     when {
-                                    branch 'master'
+                                    branch 'develop'
                          }
 
                    steps {
-                                          sh 'git checkout master'
+
                                           sh 'go version'
                                           sh 'go clean -cache'
                                           sh 'go test ./...'
+
                          }
                }
         stage('build') {
            agent { label 'slave2' }
 
-            when {
-                                                                  branch 'master'
-                                    }
+
             steps {
+
                                    script {
                                            def customImage = docker.build('singaravelan21/todo_list_manager', "./")
                                            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
@@ -39,23 +39,20 @@ pipeline {
 
         }
 
-             stage('deploy') {
-                   agent { label 'master' }
 
-                    when {
-                                                       branch 'master'
-                         }
+                stage('deployment') {
+                environment {
+                    BUILD_NUMBER = "${env.BUILD_NUMBER}"
+                  }
+                   agent { label 'slave2' }
                     steps {
                                            script {
-                                                   def customImage = docker.build('singaravelan21/todo_list_manager', "./")
-                                                   docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                                                   customImage.push("v1.0."+"${env.BUILD_NUMBER}")
-                                                   sh 'docker system prune -af --volumes'
+                                                   sh '/usr/local/bin/helm upgrade --install --atomic --wait my-todo-manager ./deployments/helmchart/todo-manager/todo-manager-0.1.0.tgz --set tag="v1.0.""$BUILD_NUMBER" --set replicaCount=3 --kubeconfig /home/ec2-user/config'
                                                     }
                                                    }
                           }
 
                 }
       }
-    }
+
 
