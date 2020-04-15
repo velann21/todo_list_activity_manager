@@ -7,7 +7,6 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/sirupsen/logrus"
 	"github.com/velann21/todo_list_activity_manager/pkg/database"
-	"github.com/velann21/todo_list_activity_manager/pkg/helpers"
 	proto "github.com/velann21/todo_list_activity_manager/pkg/proto"
 	"github.com/velann21/todo_list_activity_manager/pkg/routes"
 	"google.golang.org/grpc"
@@ -25,7 +24,7 @@ func main() {
 	logrus.SetFormatter(&logrus.JSONFormatter{TimestampFormat: time.RFC3339})
 	logrus.Info("Inside the main")
 	r := mux.NewRouter().StrictSlash(false)
-	helpers.SetEnv()
+	//helpers.SetEnv()
 	connection := database.MongoConnection{}
 	err := connection.MongoConnection()
 	if err != nil {

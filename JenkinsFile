@@ -5,8 +5,8 @@ pipeline {
 
          stage('unit test') {
                   agent { docker {
-                    image 'golang'
-                    args '-u root:sudo -v $HOME'
+                                   image 'golang'
+                                   args '-u root:sudo -v $HOME'
                      }
                     }
 
