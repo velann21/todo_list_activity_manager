@@ -13,5 +13,6 @@ RUN chmod +x ./main
 ENTRYPOINT ["./main"]
 EXPOSE 8086
 EXPOSE 2112
+EXPOSE 50051
 
 
