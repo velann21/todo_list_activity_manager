@@ -26,7 +26,6 @@ pipeline {
            agent { label 'slave2' }
 
 
-
             steps {
 
                                    script {
