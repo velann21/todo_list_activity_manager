@@ -4,9 +4,6 @@
     <list default="true" id="cbf0d22d-d043-45a3-ba77-47ea56818887" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JenkinsFile" beforeDir="false" afterPath="$PROJECT_DIR$/JenkinsFile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/activity_manager_bootstrap.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/activity_manager_bootstrap.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployments/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/deployments/docker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JenkinsFile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+            <state relative-caret-position="201">
+              <caret line="31" column="54" lean-forward="true" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -37,10 +34,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
+            <state relative-caret-position="209">
               <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
               <folding>
                 <element signature="e#1221#1236#0" />
@@ -203,10 +200,10 @@
         <option value="$PROJECT_DIR$/deployments/helmchart/todo-manager/templates/deployment.yaml" />
         <option value="$PROJECT_DIR$/deployments/helmchart/todo-manager/Chart.yaml" />
         <option value="$PROJECT_DIR$/file.groovy" />
-        <option value="$PROJECT_DIR$/JenkinsFile" />
         <option value="$PROJECT_DIR$/deployments/docker/Dockerfile" />
         <option value="$PROJECT_DIR$/cmd/activity_manager_bootstrap.go" />
         <option value="$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go" />
+        <option value="$PROJECT_DIR$/JenkinsFile" />
       </list>
     </option>
   </component>
@@ -791,16 +788,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JenkinsFile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="30" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pkg/controller/todo_activity_controller_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
+        <state relative-caret-position="209">
           <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
           <folding>
             <element signature="e#1221#1236#0" />
@@ -808,6 +798,13 @@
             <element signature="e#1605#1620#0" />
             <element signature="e#1798#1863#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JenkinsFile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="31" column="54" lean-forward="true" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
         </state>
       </provider>
     </entry>

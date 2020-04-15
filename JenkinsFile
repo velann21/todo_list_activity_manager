@@ -29,6 +29,7 @@ pipeline {
             steps {
 
                                    script {
+                                           sh 'whoami'
                                            def customImage = docker.build('singaravelan21/todo_list_manager', "./")
                                            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
                                            customImage.push("v1.0."+"${env.BUILD_NUMBER}")
