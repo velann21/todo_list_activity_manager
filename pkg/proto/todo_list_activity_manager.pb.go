@@ -4,12 +4,8 @@
 package todolist
 
 import (
-	context "context"
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
-	grpc "google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -827,84 +823,4 @@ var fileDescriptor_516e47f255818132 = []byte{
 	0x11, 0xf6, 0x96, 0x6f, 0x30, 0xfa, 0x00, 0x90, 0x24, 0x2c, 0x7a, 0xbe, 0x3d, 0xa7, 0xd5, 0x7d,
 	0x3a, 0x76, 0x1e, 0x0a, 0x72, 0x77, 0xe7, 0x3d, 0x5c, 0xaf, 0x9f, 0xf4, 0x71, 0x51, 0xbd, 0xf1,
 	0x6f, 0x7e, 0x05, 0x00, 0x00, 0xff, 0xff, 0x20, 0xb6, 0xe7, 0x93, 0x07, 0x08, 0x00, 0x00,
-}
-
-// Reference imports to suppress errors if they are not otherwise used.
-var _ context.Context
-var _ grpc.ClientConnInterface
-
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
-
-// TodoActivityManagerClient is the client API for TodoActivityManager service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type TodoActivityManagerClient interface {
-	CreateTodo(ctx context.Context, in *CreateTodoListRequest, opts ...grpc.CallOption) (*CreateTodoListResponse, error)
-}
-
-type todoActivityManagerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewTodoActivityManagerClient(cc grpc.ClientConnInterface) TodoActivityManagerClient {
-	return &todoActivityManagerClient{cc}
-}
-
-func (c *todoActivityManagerClient) CreateTodo(ctx context.Context, in *CreateTodoListRequest, opts ...grpc.CallOption) (*CreateTodoListResponse, error) {
-	out := new(CreateTodoListResponse)
-	err := c.cc.Invoke(ctx, "/todolist.TodoActivityManager/CreateTodo", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// TodoActivityManagerServer is the server API for TodoActivityManager service.
-type TodoActivityManagerServer interface {
-	CreateTodo(context.Context, *CreateTodoListRequest) (*CreateTodoListResponse, error)
-}
-
-// UnimplementedTodoActivityManagerServer can be embedded to have forward compatible implementations.
-type UnimplementedTodoActivityManagerServer struct {
-}
-
-func (*UnimplementedTodoActivityManagerServer) CreateTodo(ctx context.Context, req *CreateTodoListRequest) (*CreateTodoListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateTodo not implemented")
-}
-
-func RegisterTodoActivityManagerServer(s *grpc.Server, srv TodoActivityManagerServer) {
-	s.RegisterService(&_TodoActivityManager_serviceDesc, srv)
-}
-
-func _TodoActivityManager_CreateTodo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateTodoListRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TodoActivityManagerServer).CreateTodo(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/todolist.TodoActivityManager/CreateTodo",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TodoActivityManagerServer).CreateTodo(ctx, req.(*CreateTodoListRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _TodoActivityManager_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "todolist.TodoActivityManager",
-	HandlerType: (*TodoActivityManagerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "CreateTodo",
-			Handler:    _TodoActivityManager_CreateTodo_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "todo_list_activity_manager.proto",
 }
